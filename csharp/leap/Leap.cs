@@ -8,18 +8,6 @@ public static class Leap
         var yearDivisibleBy100 = year % 100 == 0;
         var yearDivisibleBy400 = year % 400 == 0;
 
-        if (yearDivisibleBy4)
-        {
-            if (yearDivisibleBy100)
-            {
-                if (yearDivisibleBy400)
-                {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
+        return yearDivisibleBy4 && !yearDivisibleBy100 || yearDivisibleBy400;
     }
 }
