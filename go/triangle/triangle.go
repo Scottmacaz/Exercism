@@ -20,21 +20,19 @@ const (
 // KindFromSides determines a type of triangle based on the lengths of its sides.
 // If the triangle is not a valid triangle then NaT will be returned.
 func KindFromSides(a, b, c float64) Kind {
-	sidesEqual := sidesEqual(a, b, c)
-
 	if isTriangle(a, b, c) == false {
 		return NaT
 	}
 
-	switch sidesEqual {
-	case 3:
+	if a==b && a==c && b==c {
 		return Equ
-	case 2:
-		return Iso
-	case 0:
-		return Sca
 	}
-	return NaT
+
+	if a==b || a==c || b==c {
+		return Iso
+	}
+	return Sca
+	
 }
 
 func isTriangle(a, b, c float64) bool {
@@ -59,32 +57,4 @@ func isTriangle(a, b, c float64) bool {
 	}
 
 	return true
-}
-func sidesEqual(a, b, c float64) int {
-	se := 0 // no sides equal.
-	if a == b {
-		se = 2
-		if a == c {
-			se++
-		}
-		return se
-	}
-
-	if a == c {
-		se = 2
-		if b == c {
-			se++
-		}
-		return se
-	}
-
-	if b == c {
-		se = 2
-		if b == a {
-			se++
-		}
-		return se
-	}
-
-	return se
 }
