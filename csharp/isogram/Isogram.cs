@@ -6,18 +6,7 @@ public static class Isogram
 {
   public static bool IsIsogram(string word)
   {
-    var charsFound = new List<char>();
-    foreach (char c in word)
-    {
-      if (char.IsLetter(c))
-      {
-        if (charsFound.Contains(char.ToLower(c)))
-        {
-          return false;
-        }
-        charsFound.Add(char.ToLower(c));
-      }
-    }
-    return true;
-  }
+    var chars = word.ToCharArray().Where(c=>char.IsLetter(c)).Select(c => char.ToLower(c));
+    return chars.Distinct().Count() == chars.Count();
+   }
 }
