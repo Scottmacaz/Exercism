@@ -1,15 +1,49 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package bob should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package bob is a package for responding to Bob
 package bob
 
-// Hey should have a comment documenting it.
+import (
+	"strings"
+	"unicode"
+)
+
+// Hey returns a canned response from Bob given a type of remark.
 func Hey(remark string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+
+	//trim spaces
+	trimmed := strings.TrimSpace(remark)
+
+	if len(trimmed) == 0 {
+		return "Fine. Be that way!"
+	}
+	punctuation := trimmed[len(trimmed)-1:]
+
+	switch punctuation {
+	case "?":
+		if isYelling(remark) {
+			return "Calm down, I know what I'm doing!"
+		}
+		return "Sure."
+	default:
+		if isYelling(remark) {
+			return "Whoa, chill out!"
+		}
+		return "Whatever."
+	}
 }
+
+func isYelling(remark string) bool {
+	if remark == strings.ToUpper(remark) && containsCharacter(remark) {
+		return true
+	}
+	return false
+}
+
+func containsCharacter(remark string) bool {
+	for _, v := range remark {
+		if unicode.IsLetter(v){
+			return true
+		}
+	}
+	return false
+}
+
