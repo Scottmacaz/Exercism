@@ -13,7 +13,7 @@ func Convert(r int) string {
 	if r%5 == 0 {
 		rs += "Plang"
 	}
-	
+
 	if r%7 == 0 {
 		rs += "Plong"
 	}
