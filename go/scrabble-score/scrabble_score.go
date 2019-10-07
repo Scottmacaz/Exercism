@@ -1,12 +1,12 @@
 package scrabble
 
-import "strings"
+import "unicode"
 
 // Score takes in a string which represents a scrabble word and returns the score
 func Score(word string) int {
 	score := 0
-	for _, c := range strings.ToUpper(word) {
-		score += getPoints(c)
+	for _, c := range word {
+		score += getPoints(unicode.ToUpper(c))
 	}
 	return score
 }
