@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type romanNumeralRank struct {
-	rank int
+	rank   int
 	arabic int
 	roman  string
 }
@@ -20,10 +20,12 @@ var romanNumeralRanks = []romanNumeralRank{
 
 func makeRomanNumeral(a int) string {
 
+	fmt.Println("Making roman numeral from: ", a)
 	rn := ""
 	for a > 0 {
 		for _, v := range romanNumeralRanks {
-			if a-v.arabic > 0 {
+			if a-v.arabic >= 0 {
+				fmt.Println("Subtracting ", v.arabic, " from ", a)
 				rn += v.roman
 				a -= v.arabic
 				if needsPromoting(rn) {
@@ -36,7 +38,7 @@ func makeRomanNumeral(a int) string {
 }
 
 func promote(rn string, rank int) string {
-	promote := rn[0:len(rn)-3]
+	promote := rn[0 : len(rn)-3]
 	promote += promote + "B"
 	return promote
 }
@@ -66,6 +68,13 @@ func getPlaces(a int) []int {
 }
 
 func main() {
+	fmt.Println()
 	fmt.Println("Hello World")
-	fmt.Println("10 = ", makeRomanNumeral(10))
+	fmt.Println("Done! 10 = ", makeRomanNumeral(10), "\n")
+	fmt.Println("Done! 11 = ", makeRomanNumeral(10), "\n")
+	fmt.Println("Done! 12 = ", makeRomanNumeral(10), "\n")
+	fmt.Println("Done! 13 = ", makeRomanNumeral(10), "\n")
+	c := 42
+	
+	bbbbbb
 }
