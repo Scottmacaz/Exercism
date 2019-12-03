@@ -1,18 +1,25 @@
 package isogram
 
-import "strings"
+import (
+	"unicode"
+)
 
 //IsIsogram returns true if a word is an isogram
 func IsIsogram(word string) bool {
-	charsUsed := ""
+	charMap := make(map[rune]rune)
+
 	for _, v := range word {
 		if string(v) == " " || string(v) == "-" {
 			continue
 		}
-		if strings.Contains(charsUsed, strings.ToLower(string(v))) {
+
+		v = unicode.ToLower(v)
+		_, ok := charMap[v]
+
+		if ok {
 			return false
 		}
-		charsUsed += strings.ToLower(string(v))
+		charMap[v] = v
 	}
 	return true
 }
