@@ -6,20 +6,17 @@ import (
 
 //IsIsogram returns true if a word is an isogram
 func IsIsogram(word string) bool {
-	charMap := make(map[rune]rune)
+	seen := make(map[rune]bool)
 
 	for _, v := range word {
 		if string(v) == " " || string(v) == "-" {
 			continue
 		}
-
 		v = unicode.ToLower(v)
-		_, ok := charMap[v]
-
-		if ok {
+		if seen[v] {
 			return false
 		}
-		charMap[v] = v
+		seen[v] = true
 	}
 	return true
 }
