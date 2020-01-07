@@ -6,9 +6,6 @@ def _get_column(matrix, column):
     return c
 
 def _is_matrix_regular(matrix):
-    if not matrix:
-        return True
-    
     matrixlen = len(matrix[0])
     for row in matrix:
         if matrixlen != len(row):
@@ -16,14 +13,15 @@ def _is_matrix_regular(matrix):
     return True
 
 def saddle_points(matrix):
-    x=0
+    saddlepoints = []
+    if not matrix:
+        return saddlepoints
     if not _is_matrix_regular(matrix):
         raise ValueError("Matrix is not regular.")
-    saddlepoints = []
-    for row in matrix:
+    
+    for x, row in enumerate(matrix, start=1):
         for y in range(len(row)):
             column = _get_column(matrix, y)
             if row[y] == min(column)  and row[y] == max(row) :
-                saddlepoints.append({"row": x+1, "column": y+1})
-        x += 1
+                saddlepoints.append({"row": x, "column": y+1})
     return saddlepoints
