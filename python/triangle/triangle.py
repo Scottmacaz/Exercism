@@ -1,9 +1,6 @@
 def is_triangle(sides):
-    if 0 in sides:
-        return False
-    if sides[0] + sides[1] < sides[2] or sides[0] + sides[2] < sides[1] or sides[1] + sides[2] < sides[0]:
-        return False
-    return True
+    a, b, c = sorted(sides)
+    return min(sides) > 0 and a + b > c
 
 
 def equilateral(sides):
@@ -15,7 +12,7 @@ def equilateral(sides):
 def isosceles(sides):
     if not is_triangle(sides):
         return False
-    return sides[0] == sides[1] or sides[0] == sides[2] or sides[1] == sides[2]
+    return len(set(sides)) <= 2
 
 
 def scalene(sides):
