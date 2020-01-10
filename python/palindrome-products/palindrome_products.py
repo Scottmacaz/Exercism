@@ -11,7 +11,6 @@ def find_palindromes(num_list):
     for n in num_list:
         if str(n) == "".join(reversed(str(n))):
             palindromes.append(n)
-    print("done")
     return palindromes
 
 def find_factors(num, starting_num, ending_num ) :
@@ -21,7 +20,6 @@ def find_factors(num, starting_num, ending_num ) :
             if x * y == num :
                 if not [y,x] in factors: 
                     factors.append([x,y])
-    print ("done.")
     return factors
 
 def largest(min_factor, max_factor):
@@ -42,6 +40,3 @@ def smallest(min_factor, max_factor):
         return None, []
     smallest_num = min(palindromes)
     return smallest_num, find_factors(smallest_num, min_factor, max_factor)
-
-
-print (find_factors(9, 1, 9))
